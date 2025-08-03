@@ -1,0 +1,133 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ title if title else 'Fire' }}</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='icon.png') }}">
+        <style>
+            .article-item, .article-link {
+                opacity: 0;
+                transform: translateY(10px);
+                transition: background-color 0.3s ease, transform 0.2s ease;
+                background-color: rgba(44, 0, 0, 0.2);
+                border-radius: 5px;
+                padding: 15px; 
+            }
+            .article-item {
+                list-style: none;
+                margin: 10px;
+                padding: 20px;
+                border: 1px solid rgba(44, 0, 0, 0.4);
+                background-color: rgba(44, 0, 0, 0.2); 
+                transition: background-color 0.3s ease, transform 0.2s ease;
+                border-radius: 5px;
+            }
+            h1, p {
+                opacity: 0;
+                transform: translateY(10px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+            .article-link:hover {
+                color: rgba(255, 255, 255, 0.8);
+            }
+            .header {
+                text-align: center; 
+                padding: 20px 0;
+            }
+            .search-container {
+                margin-top: 20px;
+                text-align: center;
+                margin: 5px;
+                padding: 5px;
+                background-color: rgba(44, 0, 0, 0.2); 
+            }
+            .search-container input {
+                background-color: black;
+                color: white; 
+                width: 300px;
+                font-size: 16px;
+                border-radius: 5px;
+                border: 1px solid white;  
+                padding: 5px 10px;         
+                border-radius: 3px;       
+                width: 300px; 
+            }
+        </style>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-content">
+                <a href="{{ url_for('index') }}" class="home-link">
+                    <img src="{{ url_for('static', filename='logo.png') }}" alt="Останні новини" class="logo">
+                </a>
+            </div>
+        </header>    
+        <div class="search-container">
+            <form method="GET" action="{{ url_for('search') }}">
+                <input type="text" name="query" placeholder="Пошук..." required>
+            </form>
+        </div>
+        <div class="container">
+            <ul class="articles-list">
+                {% for article in articles %}
+                    <li class="article-item">
+                        <a href="{{ url_for('article', id=article[0]) }}" class="article-link">{{ article[1] }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const menu = document.createElement("div");
+                menu.classList.add("context-menu");
+                menu.innerHTML = `
+                    <ul>
+                        <li><a href="{{ url_for('random_article') }}">Випадкова новина</a></li>
+                        <li><a href="{{ url_for('about') }}">Про нас</a></li>
+                    </ul>
+                `;
+                document.body.appendChild(menu);
+                document.addEventListener("contextmenu", function (event) {
+                    event.preventDefault();
+                    menu.style.top = `${event.clientY}px`;
+                    menu.style.left = `${event.clientX}px`;
+                    menu.classList.add("active");
+                    menu.style.opacity = "1";
+                    menu.style.transform = "scale(1) translateY(0)";
+                });
+                document.addEventListener("click", function () {
+                    menu.style.opacity = "0";
+                    menu.style.transform = "scale(0.8) translateY(-10px)";
+                    setTimeout(() => menu.classList.remove("active"), 300);
+                }); 
+                const titleElement = document.querySelector("h1");
+                const contentElement = document.querySelector("p");
+                setTimeout(() => {
+                    if (titleElement) {
+                        titleElement.style.opacity = "1";
+                        titleElement.style.transform = "translateY(0)";
+                    }
+                    if (contentElement) {
+                        contentElement.style.opacity = "1";
+                        contentElement.style.transform = "translateY(0)";
+                    }
+                }, 300);
+                const articleItems = document.querySelectorAll(".article-item");
+                articleItems.forEach((item, index) => {
+                    const link = item.querySelector(".article-link");
+                    item.style.opacity = "0";
+                    item.style.transform = "translateY(10px)";
+                    link.style.opacity = "0";
+                    link.style.transform = "translateY(10px)";
+                    setTimeout(() => {
+                        item.style.opacity = "1";
+                        item.style.transform = "translateY(0)";
+                        link.style.opacity = "1";
+                        link.style.transform = "translateY(0)";
+                    }, index * 200); 
+                });
+            });
+        </script>                      
+    </body>
+</html>

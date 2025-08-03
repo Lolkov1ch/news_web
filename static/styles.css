@@ -1,0 +1,177 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    /* background-image: url('/static/background.jpg');  */
+    background-size: cover; 
+    background-position: center; 
+    background-attachment: fixed; 
+    color: white;
+    font-size: 18.5px;
+}
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(18, 18, 18, 0.8); 
+    border-radius: 10px;
+}
+header .header {
+    padding: 10px 0;
+    background-color: #444;
+    text-align: center; 
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 100%; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+h1 {
+    font-size: 32px;
+    color: rgb(184, 184, 184);
+    margin: 0;
+    line-height: 40px; 
+    display: inline-block;
+    text-align: center;
+}
+.home-link {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    display: inline-block;
+    padding: 10px 20px;
+    width: auto;
+}
+.home-link:hover {
+    color: #ffaa00;
+    text-shadow: 0px 0px 10px rgba(255, 170, 0, 0.8);
+}
+.content {
+    font-size: 18.5px; 
+}
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    background-color: #4d0000;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(44, 0, 0, 0.2);
+}
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+}
+.logo {
+    max-width: 180px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+.nav-link {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffaa00;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+}
+.nav-link:hover {
+    color: #ffcc00;
+    text-shadow: 0px 0px 15px rgba(255, 204, 0, 0.8);
+    transform: translateY(-5px); 
+}
+.logo:hover {
+    transform: translateY(-5px);
+}
+.context-menu {
+    position: absolute;
+    background: #550000;
+    border: 1px solid #6e6e6e;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 12px;
+    display: none;
+    opacity: 0;
+    transform: scale(0.8) translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+    outline: none
+}
+.context-menu.active {
+    display: block;
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    background: #000000;
+    outline: none
+}
+.context-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: #3b1919;
+    outline: none
+}
+.context-menu li {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+    background: #000000;
+    outline: none
+}
+.context-menu li:hover {
+    background: #550000;
+    color: #000000;
+    outline: none;
+    border-radius: 10px;
+}
+.context-menu li a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    outline: none
+}
+.context-menu li:focus {
+    outline: none;
+}
+.articles-list {
+    list-style: none;
+    padding: 0;
+}
+.article-item {
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+}
+.article-link {
+    display: block;
+    font-size: 18px;
+    color: #007fbe;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.2s ease, color 0.2s ease, box-shadow 0.3s ease;
+}
+.article-link:hover {
+    color: #ffaa00;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+}
+.article-item:hover {
+    transform: scale(1.05);
+}
+#flying-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;  
+    transition: top 0.1s ease, left 0.1s ease;
+    pointer-events: none;  
+}
